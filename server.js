@@ -2,43 +2,30 @@
 var http = require("http");
 
 // Define a port to listen for incoming requests
-var PORT = 7000;
-var PORT2 = 7500;
+var PORT = 7100;
+var PORT2 = 7200;
 
 // Create a generic function to handle requests and responses
-function handleRequest(request, response) {
+function handleRequest1(request, response) {
 
   // Send the below string to the client when the user visits the PORT URL
   response.end("You are awesome" + request.url);
-}
+};
+function handleRequest2(request, response) {
 
+  // Send the below string to the client when the user visits the PORT URL
+  response.end("You are bad" + request.url);
+};
 
 // Use the Node HTTP package to create our server.
 // Pass the handleRequest function to empower it with functionality.
-var server = http.createServer(handleRequest);
+var server1 = http.createServer(handleRequest1);
+var server2 = http.createServer(handleRequest2);
 
-// Start our server so that it can begin listening to client requests.
-server.listen(PORT, function() {
-
-  // Log (server-side) when our server has started
-  console.log("Server listening on: http://localhost:" + PORT);
+server1.listen(PORT, function () {
+  console.log("server is now listening on port " + PORT);
 });
 
-// Create a generic function to handle requests and responses
-function handleRequest(request, response) {
-  
-    // Send the below string to the client when the user visits the PORT URL
-    response.end("You are bad" + request.url);
-  }
-  
-  
-  // Use the Node HTTP package to create our server.
-  // Pass the handleRequest function to empower it with functionality.
-  var server = http.createServer(handleRequest);
-  
-  // Start our server so that it can begin listening to client requests.
-  server.listen(PORT2, function() {
-  
-    // Log (server-side) when our server has started
-    console.log("Server listening on: http://localhost:" + PORT2);
-  });
+server2.listen(PORT2, function () {
+  console.log("server is now listening on port " + PORT2);
+});
